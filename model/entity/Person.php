@@ -15,9 +15,9 @@ class Person{
                 case 'READ':{
                     $person=$repo->readPerson($args);
                     $this->_setId($person["id"]);
-                    $this->_setName($person["_name"]);
+                    $this->_setName($person["name"]);
                     $this->_setSurname($person["surname"]);
-                    $this->_setCode($person["_code"]);
+                    $this->_setCode($person["code"]);
                     $this->_setEban($person["eban"]);
                     $this->_setBankname($person["bankname"]);
                     break;
@@ -38,9 +38,9 @@ class Person{
         }else{
             $person=$args;
             $this->_setId($person["id"]);
-            $this->_setName($person["_name"]);
+            $this->_setName($person["name"]);
             $this->_setSurname($person["surname"]);
-            $this->_setCode($person["_code"]);
+            $this->_setCode($person["code"]);
         }
     }
 

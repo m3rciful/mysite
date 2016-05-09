@@ -5,7 +5,7 @@
 class PersonRepository{
 
     public function readPerson($id){
-        $sql="SELECT `id`, `_name`, `surname`, `_code`, `eban`,`bankname` FROM `person` WHERE id=?";
+        $sql="SELECT `id`, `name`, `surname`, `code`, `eban`,`bankname` FROM `person` WHERE id=?";
         $dbh = ConnDB::getDbh();
         $stmt=$dbh->prepare($sql);
         $stmt->execute(["$id"]);
@@ -15,14 +15,14 @@ class PersonRepository{
     }
 
     public function insertPerson($args){
-        $sql="INSERT INTO `person`(`_name`, `surname`, `_code`, `eban`, `bankname`) VALUES (?,?,?,?,?)";
+        $sql="INSERT INTO `person`(`name`, `surname`, `code`, `eban`, `bankname`) VALUES (?,?,?,?,?)";
         $stmt = ConnDB::getDbh()->prepare($sql);
         $stmt->execute(array_values($args));
         return ConnDB::getDbh()->lastInsertId();
     }
 
     public function updatePerson($args){
-        $sql="UPDATE `person` SET `_name`=?,`surname`=?,`_code`=?,`eban`=?,`bankname`=? WHERE  id=?";
+        $sql="UPDATE `person` SET `name`=?,`surname`=?,`code`=?,`eban`=?,`bankname`=? WHERE  id=?";
         $dbh = ConnDB::getDbh();
         $stmt=$dbh->prepare($sql);
         $stmt->execute(["$args"]);

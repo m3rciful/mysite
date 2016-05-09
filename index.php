@@ -86,6 +86,9 @@ switch ($uri) {
     case $uriPrefix.'/logout': // by Sergei - Авторизация ВЫХОД
         $response=$loginController->showLogout_action();
         break;
+    case $uriPrefix.'/adduser': // by Sergei - Добавление нового пользователя
+        $response=$loginController->addUser_action();
+        break;
 }
     // Если доступ был запрещен, кидает на логин форму
     if(!$response) $response=$loginController->showLogin_action($filter->filterInsertLogin());
