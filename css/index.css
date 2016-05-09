@@ -1,0 +1,13 @@
+.container{
+	margin: 70px auto;
+	width: 600px;
+}
+.invalid{
+	border: 1px solid #f60;
+}
+#author{
+	width: 300px;
+}
+.span-delete, .span-edit, .span-add{
+	margin: 0 5px;
+}
