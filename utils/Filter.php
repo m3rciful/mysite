@@ -47,4 +47,13 @@ class Filter{
         return filter_input_array(INPUT_GET, $args);
     }
 
+    // Для формы логины считываем занчения
+    public function filterInsertLogin(){
+        $args = array(
+            'username'   => FILTER_SANITIZE_STRING,
+            'password'    => FILTER_SANITIZE_STRING
+        );
+        return filter_input_array(INPUT_POST, $args);
+    }
+
 }

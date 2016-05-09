@@ -36,6 +36,20 @@ ini_set('display_errors', 1);
 
 $groupController=new GroupController();
 $studentController=new StudentController();
+$loginController=new LoginController(); // Контроллер для авторизации
+
+// Считываем сессию
+$user=new Session('READ');
+
+// временный код ----------------
+if ($user->getId()) // Если айди есть, значит пользователь вошел
+{
+    echo "Вы вошли как, <b>".$user->getUser()."</b> (<a href='/mysite/index.php/logout'>Выйти</a>) - ";
+    echo "<b>".$user->getAccess()."</b>";
+}
+else
+    $uri = $uriPrefix.'/login';
+// временый код ------------------
 
 switch ($uri) {
     case $uriPrefix.'':
@@ -45,7 +59,8 @@ switch ($uri) {
         $response=$groupController->getGroup_action($filter->filterId());
         break;
     case $uriPrefix.'/addgroup':
-        $response=$groupController->addGroup_action();
+    if($user->getAccess() > 4) // Проверка на доступ (4 - типа супер-юзер, 1 - чайник)
+        $response=$groupController->addGroup_action(); else $response=false;
         break;
     case $uriPrefix.'/insertgroup':
         $response=$groupController->insertGroup_action($filter->filterInsertGroup());
@@ -65,8 +80,16 @@ switch ($uri) {
     case $uriPrefix.'/insertstudenttogroup':
         $response=$studentController->insertStudentToGroup_action($filter->insertStudentToGroup());
         break;
+    case $uriPrefix.'/login': // by Sergei - Авторизация ВХОД
+        $response=$loginController->showLogin_action($filter->filterInsertLogin());
+        break;
+    case $uriPrefix.'/logout': // by Sergei - Авторизация ВЫХОД
+        $response=$loginController->showLogout_action();
+        break;
 }
-
+    // Если доступ был запрещен, кидает на логин форму
+    if(!$response) $response=$loginController->showLogin_action($filter->filterInsertLogin());
+    
     if(isset($response)){
         echo $response;
     }
