@@ -59,7 +59,7 @@ switch ($uri) {
         $response=$groupController->getGroup_action($filter->filterId());
         break;
     case $uriPrefix.'/addgroup':
-    if($user->getAccess() > 4) // Проверка на доступ (4 - типа супер-юзер, 1 - чайник)
+    if($user->getAccess() > 3) // Проверка на доступ (4 - типа супер-юзер, 1 - чайник)
         $response=$groupController->addGroup_action(); else $response=false;
         break;
     case $uriPrefix.'/insertgroup':
@@ -88,6 +88,12 @@ switch ($uri) {
         break;
     case $uriPrefix.'/adduser': // by Sergei - Добавление нового пользователя
         $response=$loginController->addUser_action();
+        break;
+    case $uriPrefix.'/insertuser': // by Sergei - Добавление нового пользователя
+        $response=$loginController->insertUser_action($filter->filterInsertUser());
+        break;
+    case $uriPrefix.'/showuser':
+        $response=$loginController->listExistsUsers_action();
         break;
 }
     // Если доступ был запрещен, кидает на логин форму

@@ -15,7 +15,8 @@ class Filter{
         );
         return filter_input_array(INPUT_POST, $args);
     }
-     public function filterInsertStudent(){
+
+    public function filterInsertStudent(){
         $args = array(
             'group_id'   => FILTER_VALIDATE_INT,
             'name'    => FILTER_SANITIZE_STRING,
@@ -38,6 +39,7 @@ class Filter{
     {
         return filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);
     }
+
     public function insertStudentToGroup()
     {
         $args = array(
@@ -47,11 +49,21 @@ class Filter{
         return filter_input_array(INPUT_GET, $args);
     }
 
-    // Для формы логины считываем занчения
+    // Форма логина
     public function filterInsertLogin(){
         $args = array(
-            'username'   => FILTER_SANITIZE_STRING,
-            'password'    => FILTER_SANITIZE_STRING
+            'username'  => FILTER_SANITIZE_STRING,
+            'password'  => FILTER_SANITIZE_STRING
+        );
+        return filter_input_array(INPUT_POST, $args);
+    }
+
+    // Добавление нового пользователя
+    public function filterInsertUser(){
+        $args = array(
+            'name'  => FILTER_SANITIZE_STRING,
+            'pass'  => FILTER_SANITIZE_STRING,
+            'email' => FILTER_SANITIZE_STRING
         );
         return filter_input_array(INPUT_POST, $args);
     }

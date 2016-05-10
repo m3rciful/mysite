@@ -9,4 +9,13 @@ class UserRepository{
         return $row;
     }
 
+    public function listExistsUsers(){
+        $sql="SELECT * FROM `user`";
+        $dbh = ConnDB::getDbh();
+        $stmt=$dbh->query($sql);
+        $rows = $stmt->fetchAll();
+
+        return $rows;
+    }
+
 }

@@ -42,9 +42,28 @@ class LoginController{
             header( 'Location: http://' . $_SERVER['HTTP_HOST']  . '/mysite/index.php' );
         }
 
-        public function showError_action(){
-            
-            $response=$this->renderTemplate("view/login_error.php", array());
+        // Список всех пользователей
+        public function listExistsUsers_action(){
+            $userRepository=new userRepository();
+            $users=$userRepository->listExistsUsers();
+            $response=$this->renderTemplate("view/listExistsUsers.php", array('users'=>$users));
+            return $response;
+        }
+
+        // Добавление нового пользователя (input)
+        public function addUser_action(){
+
+            $response=$this->renderTemplate("view/addUser.php", array());
+            return $response;
+        }
+
+        // Добавление нового пользователя (send)
+        public function insertUser_action($args){
+             echo "<br>InsertStudent_action:<pre>";
+             var_dump($args);
+             echo "</pre>";
+            $response=$this->listExistsUsers_action();
+
             return $response;
         }
 
