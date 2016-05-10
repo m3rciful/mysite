@@ -22,15 +22,15 @@ class User{
                     break;
                 }
                 case 'INSERT':{
-                    //$this->_setId($repo->insertStudent($args));
-                    //break;
+                    $this->_setId($repo->insertUser($args));
+                    break;
                 }
                 case 'UPDATE':{
-                    //$repo->updateStudent($args);
+                    //$repo->updateUser($args);
                     //break;
                 }
                 case 'DELETE':{
-                    //$repo->deleteStudent($args);
+                    //$repo->deleteUser($args);
                     //break;
                 }
             }
@@ -64,7 +64,6 @@ class User{
     private function _setId($id)
     {
         $this->id = $id;
-        $_SESSION["id"] = $id;
 
         return $this;
     }
@@ -89,7 +88,6 @@ class User{
     private function _setUser($user)
     {
         $this->user = $user;
-        $_SESSION["user"] = $user;
 
         return $this;
     }
@@ -114,7 +112,6 @@ class User{
     private function _setPass($pass)
     {
         $this->pass = $pass;
-        $_SESSION["pass"] = $pass;
 
         return $this;
     }
@@ -139,7 +136,6 @@ class User{
     private function _setEmail($email)
     {
         $this->email = $email;
-        $_SESSION["email"] = $email;
 
         return $this;
     }
@@ -163,7 +159,6 @@ class User{
     private function _setAccess($access)
     {
         $this->access = $access;
-        $_SESSION["access"] = $access;
 
         return $this;
     }

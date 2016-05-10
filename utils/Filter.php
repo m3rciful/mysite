@@ -61,9 +61,10 @@ class Filter{
     // Добавление нового пользователя
     public function filterInsertUser(){
         $args = array(
-            'name'  => FILTER_SANITIZE_STRING,
-            'pass'  => FILTER_SANITIZE_STRING,
-            'email' => FILTER_SANITIZE_STRING
+            'name'      => FILTER_SANITIZE_STRING,
+            'pass'      => FILTER_SANITIZE_STRING,
+            'email'     => FILTER_SANITIZE_STRING,
+            'access'    => FILTER_VALIDATE_INT
         );
         return filter_input_array(INPUT_POST, $args);
     }

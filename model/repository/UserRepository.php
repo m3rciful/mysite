@@ -18,4 +18,12 @@ class UserRepository{
         return $rows;
     }
 
+    public function insertUser($args){
+        $sql="INSERT INTO `user`(`username`, `password`, `email`, `access`) VALUES (?,?,?,?)";
+        $stmt = ConnDB::getDbh()->prepare($sql);
+        $stmt->execute(array_values($args));
+
+        return ConnDB::getDbh()->lastInsertId();
+    }
+
 }

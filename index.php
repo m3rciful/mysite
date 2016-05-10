@@ -42,6 +42,7 @@ $loginController=new LoginController(); // Контроллер для авто�
 $user=new Session('READ');
 
 // временный код ----------------
+
 if ($user->getId()) // Если айди есть, значит пользователь вошел
 {
     echo "Вы вошли как, <b>".$user->getUser()."</b> (<a href='/mysite/index.php/logout'>Выйти</a>) - ";
@@ -49,6 +50,7 @@ if ($user->getId()) // Если айди есть, значит пользова
 }
 else
     $uri = $uriPrefix.'/login';
+
 // временый код ------------------
 
 switch ($uri) {
@@ -80,16 +82,16 @@ switch ($uri) {
     case $uriPrefix.'/insertstudenttogroup':
         $response=$studentController->insertStudentToGroup_action($filter->insertStudentToGroup());
         break;
-    case $uriPrefix.'/login': // by Sergei - Авторизация ВХОД
+    case $uriPrefix.'/login': // Авторизация ВХОД
         $response=$loginController->showLogin_action($filter->filterInsertLogin());
         break;
-    case $uriPrefix.'/logout': // by Sergei - Авторизация ВЫХОД
+    case $uriPrefix.'/logout': // Авторизация ВЫХОД
         $response=$loginController->showLogout_action();
         break;
-    case $uriPrefix.'/adduser': // by Sergei - Добавление нового пользователя
+    case $uriPrefix.'/adduser': // Добавление нового пользователя
         $response=$loginController->addUser_action();
         break;
-    case $uriPrefix.'/insertuser': // by Sergei - Добавление нового пользователя
+    case $uriPrefix.'/insertuser': // Добавление нового пользователя
         $response=$loginController->insertUser_action($filter->filterInsertUser());
         break;
     case $uriPrefix.'/showuser':
