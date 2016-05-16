@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   	<div class="container-fluid">
 	    <div class="navbar-header">
-	    	<a title="Главная страница" class="navbar-brand" href="/mysite/index.php">my<b>site</b></a>
+	    	<a title="Главная страница" class="navbar-brand" href="/index.php">my<b>site</b></a>
 	    </div>
 	    <?php
 	    	$sid = new Session('START'); 
