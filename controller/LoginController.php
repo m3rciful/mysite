@@ -25,41 +25,52 @@ class LoginController{
          * @return string  ответ сервера клиенту (браузеру)
          */
 
-        public function showLogin_action($args){
+        public function showLogin_action($args) {
+
+            $paramForResponse = array('alert' => 'hide','title' => null, 'msg' => null);
 
             if($args) 
-            {
-                $login = new User($args,'READ');
+            {  
+                $user = new User($args,'READ');
 
-                $_SESSION["id"]     = $login->getId();
-                $_SESSION["user"]   = $login->getUser();
-                $_SESSION["pass"]   = $login->getPass();
-                $_SESSION["email"]  = $login->getEmail();
-                $_SESSION["access"] = $login->getAccess();
-
-                // redirect to INDEX
-                header( 'Location: http://' . $_SERVER['HTTP_HOST']  . '/mysite/index.php' );
+                if($user->getId())
+                {
+                    $session = new Session();
+                    $session->refresh();
+    
+                    $paramForUser = array($session->getSession(), $user->getId());
+                    $user = new User($paramForUser, 'UPDATE');
+    
+                    header('Location: http://'.$_SERVER['HTTP_HOST'] .'/mysite/index.php'); // временное решение
+                    exit();
+                }
+                else {
+                    $paramForResponse = array(
+                    'alert' => null, 
+                    'title' => "Ошибка",
+                    'msg' => "Вы ввели неверный <b>логин</b> или <b>пароль</b>");
+                }
             }
 
-            $response=$this->renderTemplate("view/login.php", array());
-
+            $response=$this->renderTemplate("view/login.php", $paramForResponse);
             return $response;
         }
 
-        public function showLogout_action(){
+        public function showLogout_action($id) {
 
-            $session = new Session('DESTROY');
-            // redirect to INDEX
-            header( 'Location: http://' . $_SERVER['HTTP_HOST']  . '/mysite/index.php' );
+            $userRepository=new userRepository();
+            $userRepository->destroyUserSession($id);
+
+            return header('Location: http://'.$_SERVER['HTTP_HOST'] .'/mysite/index.php'); // временное решение
         }
 
         // Список всех пользователей
-        public function listExistsUsers_action(){
+        public function listExistsUsers_action() {
 
             $userRepository=new userRepository();
             $users=$userRepository->listExistsUsers();
-            $response=$this->renderTemplate("view/listExistsUsers.php", array('users'=>$users));
 
+            $response=$this->renderTemplate("view/listExistsUsers.php", array('users'=>$users));
             return $response;
         }
 
@@ -71,7 +82,7 @@ class LoginController{
         }
 
         // Добавление нового пользователя (send)
-        public function insertUser_action($args){
+        public function insertUser_action($args) {
 
             $user=new User($args,"INSERT");
             return $this->listExistsUsers_action();

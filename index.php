@@ -36,22 +36,14 @@ ini_set('display_errors', 1);
 
 $groupController=new GroupController();
 $studentController=new StudentController();
-$loginController=new LoginController(); // Контроллер для авторизации
+$loginController=new LoginController();
 
-// Считываем сессию
-$user=new Session('READ');
+$sid = new Session('START'); // Считываем сессию SESSION_ID
+$user=new User( $sid->getSession(), 'READ'); // Проверяем есть ли такой сеанс в базе
 
-// временный код ----------------
-
-if ($user->getId()) // Если айди есть, значит пользователь вошел
-{
-    echo "Вы вошли как, <b>".$user->getUser()."</b> (<a href='/mysite/index.php/logout'>Выйти</a>) - ";
-    echo "<b>".$user->getAccess()."</b>";
-}
-else
+if (!$user->getId()) {
     $uri = $uriPrefix.'/login';
-
-// временый код ------------------
+}
 
 switch ($uri) {
     case $uriPrefix.'':
@@ -86,7 +78,7 @@ switch ($uri) {
         $response=$loginController->showLogin_action($filter->filterInsertLogin());
         break;
     case $uriPrefix.'/logout': // Авторизация ВЫХОД
-        $response=$loginController->showLogout_action();
+        $response=$loginController->showLogout_action($user->getId());
         break;
     case $uriPrefix.'/adduser': // Добавление нового пользователя
         $response=$loginController->addUser_action();
@@ -98,10 +90,11 @@ switch ($uri) {
         $response=$loginController->listExistsUsers_action();
         break;
 }
-    // Если доступ был запрещен, кидает на логин форму
-    if(!$response) $response=$loginController->showLogin_action($filter->filterInsertLogin());
     
     if(isset($response)){
+        // Если доступ был запрещен, предлагает авторизироваться
+        if(!$response) $response=$loginController->showLogin_action($filter->filterInsertLogin());
+
         echo $response;
     }
 

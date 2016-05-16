@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 09 2016 г., 18:30
--- Версия сервера: 10.1.13-MariaDB
--- Версия PHP: 5.6.20
+-- Время создания: Май 16 2016 г., 13:37
+-- Версия сервера: 10.1.10-MariaDB
+-- Версия PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,6 +30,7 @@ CREATE TABLE `user` (
   `id` int(100) NOT NULL,
   `username` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
+  `session_id` varchar(192) NOT NULL,
   `email` varchar(200) NOT NULL,
   `access` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -38,9 +39,11 @@ CREATE TABLE `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `access`) VALUES
-(1, 'sergei', '123', 'sergei@mail.ru', 4),
-(2, 'andrei', '123', 'andrei@hot.ee', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `session_id`, `email`, `access`) VALUES
+(1, 'sergei', '123', '', 'merciful@hot.ee', 4),
+(2, 'andrei', '123', 'ovq96dtnj74f02thhaduq71v91', 'andrei@hot.ee', 1),
+(3, 'juri', '123', '', 'juri@ivkhk.ee', 4),
+(4, 'pupil', 'pupil', '', 'pupil@google.com', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -60,7 +63,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
