@@ -14,14 +14,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-  		<div class="container-fluid">
-	    	<div class="navbar-header"><a title="Главная страница" class="navbar-brand" href="/mysite/index.php">mysite</a></div>
-	    	<ul class="nav navbar-nav navbar-right">
-	    		<li><a href='/mysite/index.php/logout'>Выйти</a></li>
-	    	</ul>
-	  	</div>
-	</nav>
+`	<?php require_once 'topmenu.php'; ?>
 
 	<?php echo $content; ?>
 

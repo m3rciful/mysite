@@ -1,7 +1,7 @@
 <?php
 
 class LoginController{
-
+        public static $userName;
         public function __construct(){
         }
         /**
@@ -32,6 +32,7 @@ class LoginController{
             if($args) 
             {  
                 $user = new User($args,'READ');
+                LoginController::$userName=$user->getUser();
 
                 if($user->getId())
                 {
