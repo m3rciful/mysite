@@ -1,12 +1,11 @@
 <?php
-
-    $link='
-        <link rel="stylesheet" href="/mysite/css/index.css">';
- ?>
+    $mysite = dirname($_SERVER['SCRIPT_NAME']);
+    $link='<link rel="stylesheet" href="'.$mysite.'/css/index.css">';
+?>
 <?php ob_start(); ?>
 <div class="container">
     <h3>Добавление нового пользователя</h3>
-    <form role="form" action="/mysite/index.php/insertuser" method="POST">
+    <form role="form" action="<?php echo $mysite;?>/index.php/insertuser" method="POST">
         <div class="form-group" >
           <label for="_name">Логин:</label>
           <input type="text" class="form-control" id="_name" name="name" placeholder="Логин">

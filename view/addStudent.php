@@ -1,13 +1,13 @@
 <?php
-
+    $mysite = dirname($_SERVER['SCRIPT_NAME']);
     $link='
-        <link rel="stylesheet" href="/mysite/css/index.css">
-        <script defer src="/mysite/js/addGroup.js"></script>';
- ?>
+        <link rel="stylesheet" href="'.$mysite.'/css/index.css">
+        <script defer src="'.$mysite.'/js/addGroup.js"></script>';
+?>
 <?php ob_start(); ?>
 <div class="container">
     <h3>Добавление нового ученика</h3>
-    <form role="form" action="/mysite/index.php/insertstudent" method="POST" onsubmit="return validate()">
+    <form role="form" action="<?php echo $mysite;?>/index.php/insertstudent" method="POST" onsubmit="return validate()">
         <div class="form-group" >
           <label for="_group_id">Группа:</label>
           <select class="form-control" id="_group_id" name="group_id">

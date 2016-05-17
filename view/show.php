@@ -1,8 +1,8 @@
-<?php ob_start(); ?>
 <?php
-	$link='
-		<link rel="stylesheet" href="/mysite/css/show.css">'
- ?>
+	$mysite = dirname($_SERVER['SCRIPT_NAME']);
+	$link='<link rel="stylesheet" href="'.$mysite.'/css/show.css">';
+?>
+<?php ob_start(); ?>
 <div class="container">
 	<h2><?php echo $row['title']; ?></h2>
 	<div class="well well-sm">Автор: <?php echo $row['author'];?></div>

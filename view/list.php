@@ -1,13 +1,14 @@
-<?php ob_start(); ?>
 <?php
-	$link='<link rel="stylesheet" href="/mysite/css/list.css">'
- ?>
+	$mysite = dirname($_SERVER['SCRIPT_NAME']);
+	$link='<link rel="stylesheet" href="'.$mysite.'/css/list.css">';
+?>
+<?php ob_start(); ?>
 <div class="container">
 	<h3>Список всех записей в таблице</h3>
 		<ol>
 			<?php foreach($rows as $row): ?>
 				<li class="well well-sm">
-					<a href="/mysite/index.php/show?id=<?php echo $row['id'];?>">
+					<a href="<?php echo $mysite;?>/index.php/show?id=<?php echo $row['id'];?>">
 						<?php echo $row['title']; ?>
 					</a>
 				</li>

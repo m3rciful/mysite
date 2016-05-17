@@ -1,7 +1,7 @@
 <?php
 
 class LoginController{
-        public static $userName;
+
         public function __construct(){
         }
         /**
@@ -10,11 +10,8 @@ class LoginController{
          * @param mixin $data - объект или массив с данными, которые будут доступны в шаблоне.
          * @return строка содержащая данные, обернутые в html
          */
-
         private function renderTemplate($path, $data = null) {
-            // echo "<pre>";
-            // var_dump($data);
-            // echo "</pre>";
+
             ob_start();
             require $path;
             $html=ob_get_clean();
@@ -32,7 +29,6 @@ class LoginController{
             if($args) 
             {  
                 $user = new User($args,'READ');
-                LoginController::$userName=$user->getUser();
 
                 if($user->getId())
                 {
@@ -42,7 +38,7 @@ class LoginController{
                     $paramForUser = array($session->getSession(), $user->getId());
                     $user = new User($paramForUser, 'UPDATE');
     
-                    header('Location: http://'.$_SERVER['HTTP_HOST'] .'/mysite/index.php'); // временное решение
+                    header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']); // временное решение
                     exit();
                 }
                 else {
@@ -62,7 +58,7 @@ class LoginController{
             $userRepository=new userRepository();
             $userRepository->destroyUserSession($id);
 
-            return header('Location: http://'.$_SERVER['HTTP_HOST'] .'/mysite/index.php'); // временное решение
+            return header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']); // временное решение
         }
 
         // Список всех пользователей
@@ -85,8 +81,14 @@ class LoginController{
         // Добавление нового пользователя (send)
         public function insertUser_action($args) {
 
-            $user=new User($args,"INSERT");
-            return $this->listExistsUsers_action();
+            if($args['name'] AND $args['pass']) {
+                
+                $user=new User($args,"INSERT");
+                return $this->listExistsUsers_action();
+            }
+            else {
+                return $this->addUser_action();
+            }
         }
 
 

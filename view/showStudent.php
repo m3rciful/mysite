@@ -1,7 +1,8 @@
-<?php ob_start();
-
-    $link='<link rel="stylesheet" href="/mysite/css/show.css">';
+<?php
+	$mysite = dirname($_SERVER['SCRIPT_NAME']);
+    $link='<link rel="stylesheet" href="'.$mysite.'/css/show.css">';
  ?>
+ <?php ob_start(); ?>
 <div class="container">
     <h2>Cведения о студенте: <?php echo $data['student']->getPerson()->getName().' '.$data['student']->getPerson()->getSurname();?></h2>
     <div class="well well-sm">id: <?php echo $data['student']->getId()." <br>Registry: ".$data['student']->getRegistry()."<br>Группа:".$data['student']->getGroup()->getAbbreviation()."<br>Курс:".$data['student']->getGroup()->getCourse(); ?></div>

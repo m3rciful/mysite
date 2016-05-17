@@ -10,11 +10,8 @@ class GroupController{
          * @param mix $data - объект или массив с данными, которые будут доступны в шаблоне.
          * @return строка содержащая данные, обернутые в html
          */
-        private function renderTemplate($path, $data = null)
-        {
-            // echo "<pre>";
-            // var_dump($data);
-            // echo "</pre>";
+        private function renderTemplate($path, $data = null) {
+            
             ob_start();
             require $path;
             $html=ob_get_clean();

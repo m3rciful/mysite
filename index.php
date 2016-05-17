@@ -31,7 +31,7 @@ ini_set('display_errors', 1);
     $s = explode('?', $uri);
     $uri = $s[0];
     $uri=rtrim($uri,'/');
-    $uriPrefix='/mysite/index.php';
+    $uriPrefix= $_SERVER['SCRIPT_NAME']; // '/mysite/index.php'
 
 
 $groupController=new GroupController();
@@ -53,8 +53,8 @@ switch ($uri) {
         $response=$groupController->getGroup_action($filter->filterId());
         break;
     case $uriPrefix.'/addgroup':
-    if($user->getAccess() > 3) // Проверка на доступ (4 - типа супер-юзер, 1 - чайник)
-        $response=$groupController->addGroup_action(); else $response=false;
+        if($user->getAccess() > 3) // Проверка на доступ (4 - типа супер-юзер, 1 - чайник)
+            $response=$groupController->addGroup_action(); else $response=false;
         break;
     case $uriPrefix.'/insertgroup':
         $response=$groupController->insertGroup_action($filter->filterInsertGroup());
@@ -74,17 +74,19 @@ switch ($uri) {
     case $uriPrefix.'/insertstudenttogroup':
         $response=$studentController->insertStudentToGroup_action($filter->insertStudentToGroup());
         break;
-    case $uriPrefix.'/login': // Авторизация ВХОД
+    case $uriPrefix.'/login':
         $response=$loginController->showLogin_action($filter->filterInsertLogin());
         break;
-    case $uriPrefix.'/logout': // Авторизация ВЫХОД
+    case $uriPrefix.'/logout':
         $response=$loginController->showLogout_action($user->getId());
         break;
-    case $uriPrefix.'/adduser': // Добавление нового пользователя
-        $response=$loginController->addUser_action();
+    case $uriPrefix.'/adduser':
+        if($user->getAccess() > 3)
+            $response=$loginController->addUser_action();  else $response=false;
         break;
-    case $uriPrefix.'/insertuser': // Добавление нового пользователя
-        $response=$loginController->insertUser_action($filter->filterInsertUser());
+    case $uriPrefix.'/insertuser':
+        if($user->getAccess() > 3)
+            $response=$loginController->insertUser_action($filter->filterInsertUser());  else $response=false;
         break;
     case $uriPrefix.'/showuser':
         $response=$loginController->listExistsUsers_action();

@@ -1,12 +1,13 @@
 <?php
+    $mysite = dirname($_SERVER['SCRIPT_NAME']);
     $link='
-        <link rel="stylesheet" href="/mysite/css/index.css">
-        <script defer src="/mysite/js/addGroup.js"></script>';
- ?>
+        <link rel="stylesheet" href="'.$mysite.'/css/index.css">
+        <script defer src="'.$mysite.'/js/addGroup.js"></script>';
+?>
 <?php ob_start(); ?>
 <div class="container">
     <h3>Добавление новой группы</h3>
-    <form role="form" action="/mysite/index.php/insertgroup" method="POST" onsubmit="return validate()">
+    <form role="form" action="<?php echo $mysite;?>/index.php/insertgroup" method="POST" onsubmit="return validate()">
         <div class="form-group" >
           <label for="_abbreviation">Абревиатура:</label>
           <input type="text" class="form-control" id="_abbreviation" name="abbreviation" placeholder="Абревиатура">
