@@ -1,8 +1,18 @@
 <?php
+/**
+ * @author Sergei Novitskov
+ * @copyright Group 2KTVRp. IVKHK 2016
+ * @version 1.0
+ */
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-    //функция автозагрузки классов по требованию
+    /**
+     * функция автозагрузки классов по требованию
+     * @param  string $class_name - название папки
+     * @return подключает файл, если он еще не был подключен.
+     */
     function myLoader($class_name){
 
         $myDirs=array(  'controller/',
@@ -22,8 +32,8 @@ ini_set('display_errors', 1);
             }
         }
     }
-    //регистрация автозагрузчика
-    spl_autoload_register('myLoader');
+    
+    spl_autoload_register('myLoader'); //регистрация автозагрузчика
 
     $filter=new Filter();
 
@@ -31,7 +41,7 @@ ini_set('display_errors', 1);
     $s = explode('?', $uri);
     $uri = $s[0];
     $uri=rtrim($uri,'/');
-    $uriPrefix= $_SERVER['SCRIPT_NAME']; // '/mysite/index.php'
+    $uriPrefix= $_SERVER['SCRIPT_NAME']; // путь /mysite/index.php
 
 
 $groupController=new GroupController();

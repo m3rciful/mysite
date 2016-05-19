@@ -17,11 +17,12 @@ class LoginController{
             $html=ob_get_clean();
             return $html;
         }
-        /**
-         * Добывает список активных групп и оборачивает его в html
-         * @return string  ответ сервера клиенту (браузеру)
-         */
 
+        /**
+         * метод, который обрабатывает данные из формы и создает сессию, если пользователь существует.
+         * @param  string $args - массив состоящий из username и password
+         * @return string ответ сервера клиенту (браузеру)
+         */
         public function showLogin_action($args) {
 
             $paramForResponse = array('alert' => 'hide','title' => null, 'msg' => null);
@@ -53,15 +54,23 @@ class LoginController{
             return $response;
         }
 
-        public function showLogout_action($id) {
+        /**
+         * метод, который получает session_id пользователя и закрывает сессию
+         * @param  string $session_id - сессия пользователя
+         * @return возвращает функцию header для передаресации на index.php
+         */
+        public function showLogout_action($session_id) {
 
             $userRepository=new userRepository();
-            $userRepository->destroyUserSession($id);
+            $userRepository->destroyUserSession($session_id);
 
             return header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']); // временное решение
         }
 
-        // Список всех пользователей
+        /**
+         * Добывает список пользователей и оборачивает его в html
+         * @return string ответ сервера клиенту (браузеру)
+         */
         public function listExistsUsers_action() {
 
             $userRepository=new userRepository();
@@ -71,14 +80,21 @@ class LoginController{
             return $response;
         }
 
-        // Добавление нового пользователя (input)
+        /**
+         * Выводит форму для добавления нового пользователя
+         * @return string  ответ сервера клиенту (браузеру)
+         */
         public function addUser_action(){
 
             $response=$this->renderTemplate("view/addUser.php", array());
             return $response;
         }
 
-        // Добавление нового пользователя (send)
+        /**
+         * Добавляет нового пользователя в таблицу user
+         * @param  string $args - массив с данными нового пользователя (name, pass, email, access)
+         * @return список всех пользователей или туже саммую форму
+         */
         public function insertUser_action($args) {
 
             if($args['name'] AND $args['pass']) {
