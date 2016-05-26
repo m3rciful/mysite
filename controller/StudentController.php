@@ -26,6 +26,10 @@ class StudentController{
             $response=$this->renderTemplate("view/showStudent.php", array('student'=>$student));
             return $response;
         }
+        /**
+         * Добывает информацию о студенте и оборачивает ее в html
+         * @return string  ответ сервера клиенту (браузеру)
+         */
         public function addStudent_action(){
 
             $groupRepository=new GroupRepository();
@@ -40,10 +44,12 @@ class StudentController{
             $response=$this->renderTemplate("view/addStudent.php", array('groups'=>$groups,'cities'=>$cities,'countries'=>$countries));
             return $response;
         }
+        /**
+         * Записывает информацию о новом студенте в базу
+         * @param массив $args содержит значения для полей в таблиц address, person, student, group
+         * (проследите последовательность полей согласно их расположению втаблице)
+         */
         public function insertStudent_action($args){
-            // echo "<br>InsertStudent_action:<pre>";
-            // var_dump($args);
-            // echo "</pre>";
                 $paramForAddress=array($args['street'],$args['house'],$args['room'],$args['city_id']);
             $address=new Address($paramForAddress,'INSERT');
                 $paramForPerson=array($args['name'],$args['surname'],$args['code'],$args['eban'],$args['bankname']);
@@ -57,12 +63,22 @@ class StudentController{
 
             return $response;
         }
+        /**
+         * Добывает информацию о студенте и оборачивает ее в html
+         * @param  int $group_id  идентификатор группы
+         * @return string  ответ сервера клиенту (браузеру)
+         */
         public function listExistsStudents_action($group_id){
             $StudentRepository=new StudentRepository();
             $persons=$StudentRepository->listExistsStudents($group_id);
             $response=$this->renderTemplate("view/listExistsStudents.php", array('persons'=>$persons,'group_id'=>$group_id));
             return $response;
         }
+        /**
+         * Добавляет студента в группу и оборачивает ее в html
+         * @param массив $args содержит значения для полей в таблице group
+         * (проследите последовательность полей согласно их расположению втаблице)
+         */
         public function insertStudentToGroup_action($args){
             $studentRepository=new StudentRepository();
             $student=$studentRepository->getStudentByPersonId($args['person_id']);

@@ -1,9 +1,17 @@
 <?php
 class Filter{
+    /**
+     * [filterId description]
+     * @return [type] [description]
+     */
     public function filterId(){
         return filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
     }
 
+    /**
+     * [filterInsertGroup description]
+     * @return [type] [description]
+     */
     public function filterInsertGroup(){
         $args = array(
             'abbreviation'   => FILTER_SANITIZE_STRING,
@@ -16,6 +24,10 @@ class Filter{
         return filter_input_array(INPUT_POST, $args);
     }
 
+    /**
+     * [filterInsertStudent description]
+     * @return [type] [description]
+     */
     public function filterInsertStudent(){
         $args = array(
             'group_id'   => FILTER_VALIDATE_INT,
@@ -35,11 +47,19 @@ class Filter{
         return filter_input_array(INPUT_POST, $args);
     }
 
+    /**
+     * [filterGetUri description]
+     * @return [type] [description]
+     */
     public function filterGetUri()
     {
         return filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);
     }
 
+    /**
+     * [insertStudentToGroup description]
+     * @return [type] [description]
+     */
     public function insertStudentToGroup()
     {
         $args = array(
@@ -49,7 +69,10 @@ class Filter{
         return filter_input_array(INPUT_GET, $args);
     }
 
-    // Форма логина
+    /**
+     * Форма логина
+     * @return [type] [description]
+     */
     public function filterInsertLogin(){
         $args = array(
             'username'  => FILTER_SANITIZE_STRING,
@@ -58,7 +81,10 @@ class Filter{
         return filter_input_array(INPUT_POST, $args);
     }
 
-    // Добавление нового пользователя
+    /**
+     * Добавление нового пользователя
+     * @return [type] [description]
+     */
     public function filterInsertUser(){
         $args = array(
             'name'      => FILTER_SANITIZE_STRING,

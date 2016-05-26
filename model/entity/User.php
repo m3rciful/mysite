@@ -1,12 +1,45 @@
 <?php
+/**
+ * @author Sergei Novitskov
+ * @copyright 2KTVRp Group IVKHK 2016
+ * 
+ * @package LoginController
+ */
 class User{
-    private $id;
-    private $user;
-    private $pass;
 
+    /**
+     * номер пользователя
+     * @var int
+     */
+    private $id;
+    /**
+     * имя пользователя
+     * @var String
+     */
+    private $user;
+    /**
+     * пароль пользователя
+     * @var String
+     */
+    private $pass;
+    /**
+     * адрес пользователя
+     * @var String
+     */
     private $email;
+    /**
+     * уровень доступа
+     * @var int
+     */
     private $access;
 
+    /**
+     *  Считывает состояние из таблицы user или записывает, изменяет или удаляет строку таблицы.
+     *
+     * @param array $args содержит id строки в таблице, которыую необходимо затронуть, 
+     * или значения полей таблицы в следующем порядке: id, username, password, email, access
+     * @param string $flag содержит строку-флаг, который определяет действие (READ,INSERT,UPDATE,DELETE)
+     */
     public function __construct($args, $flag=null){
 
         if($flag!=null){
@@ -50,11 +83,20 @@ class User{
 
     }
 
+    /**
+     * Получает значение id
+     * @return id;
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Устанавливает значение $id
+     * @param String $id номель пользователя
+     * @return self
+     */
     private function _setId($id)
     {
         $this->id = $id;
@@ -62,11 +104,20 @@ class User{
         return $this;
     }
 
+    /**
+     * Получает значение user
+     * @return String;
+     */
     public function getUser()
     {
         return $this->user;
     }
 
+    /**
+     * Устанавливает значение $user
+     * @param String $user имя пользователя
+     * @return self
+     */
     private function _setUser($user)
     {
         $this->user = $user;
@@ -74,11 +125,20 @@ class User{
         return $this;
     }
 
+    /**
+     * Получает значение pass
+     * @return String;
+     */
     public function getPass()
     {
         return $this->pass;
     }
 
+    /**
+     * Устанавливает значение $pass
+     * @param int $pass пароль пользователя
+     * @return self
+     */
     private function _setPass($pass)
     {
         $this->pass = $pass;
@@ -86,11 +146,20 @@ class User{
         return $this;
     }
 
+    /**
+     * Получает значение email
+     * @return String;
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * Устанавливает значение $email
+     * @param String $email эл. адресс
+     * @return self
+     */
     private function _setEmail($email)
     {
         $this->email = $email;
@@ -98,11 +167,20 @@ class User{
         return $this;
     }
 
+    /**
+     * Получает значение access
+     * @return Int;
+     */
     public function getAccess()
     {
         return $this->access;
     }
 
+    /**
+     * Устанавливает значение $access
+     * @param int $access уровень доступа
+     * @return self
+     */
     private function _setAccess($access)
     {
         $this->access = $access;

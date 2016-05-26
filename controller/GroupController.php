@@ -48,7 +48,10 @@ class GroupController{
             $group=new Group($args,"INSERT");
             return $this->getAllGroups_action();
         }
-
+        /**
+         * Добывает информацию о группе и оборачивает ее в html
+         * @return string  ответ сервера клиенту (браузеру)
+         */
         public function addGroup_action(){
             $person = new Person('1','READ');
             $response=$this->renderTemplate("view/addGroup.php");

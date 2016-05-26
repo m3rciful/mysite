@@ -1,13 +1,24 @@
 <?php
-
+/**
+ * @author Sergei Novitskov
+ * @copyright 2KTVRp Group IVKHK 2016
+ * 
+ * @category LoginController
+ */
 class LoginController{
 
+        /**
+         * Конструктор
+         * @access public
+         */
         public function __construct(){
         }
+
         /**
          * метод, который оборачивает данные в html
-         * @param String $path - путь к шаблону html
-         * @param mixin $data - объект или массив с данными, которые будут доступны в шаблоне.
+         * @param  String $path путь к шаблону html
+         * @param  array $data объект или массив с данными, которые будут доступны в шаблоне.
+         * @access private
          * @return строка содержащая данные, обернутые в html
          */
         private function renderTemplate($path, $data = null) {
@@ -19,8 +30,8 @@ class LoginController{
         }
 
         /**
-         * метод, который обрабатывает данные из формы и создает сессию, если пользователь существует.
-         * @param  string $args - массив состоящий из username и password
+         * метод, который обрабатывает данные из формы авторизации и создает сессию, если пользователь существует.
+         * @param  массив $args содержит значения (user, pass) для полей в таблице user
          * @return string ответ сервера клиенту (браузеру)
          */
         public function showLogin_action($args) {
@@ -55,7 +66,7 @@ class LoginController{
         }
 
         /**
-         * метод, который получает session_id пользователя и закрывает сессию
+         * Метод, который получает session_id пользователя и закрывает сессию
          * @param  string $session_id - сессия пользователя
          * @return возвращает функцию header для передаресации на index.php
          */
@@ -91,9 +102,9 @@ class LoginController{
         }
 
         /**
-         * Добавляет нового пользователя в таблицу user
-         * @param  string $args - массив с данными нового пользователя (name, pass, email, access)
-         * @return список всех пользователей или туже саммую форму
+         * Записывает информацию о новом пользователу в базу
+         * @param  массив $args содержит значения для полей в таблице user
+         * @return список всех пользователей (перенаправление)
          */
         public function insertUser_action($args) {
 

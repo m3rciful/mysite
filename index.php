@@ -1,12 +1,12 @@
 <?php
 /**
  * @author Sergei Novitskov
- * @copyright Group 2KTVRp. IVKHK 2016
+ * @copyright 2KTVRp Group IVKHK 2016
  * @version 1.0
  */
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
     /**
      * функция автозагрузки классов по требованию
@@ -32,7 +32,7 @@ ini_set('display_errors', 1);
             }
         }
     }
-    
+
     spl_autoload_register('myLoader'); //регистрация автозагрузчика
 
     $filter=new Filter();
