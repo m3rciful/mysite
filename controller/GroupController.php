@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var GroupController вызывает соответствующую модель для задачи и выбирает подходящий вид. 
+ */
 class GroupController{
 
         public function __construct(){

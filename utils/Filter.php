@@ -1,16 +1,18 @@
 <?php
+
 class Filter{
+
     /**
-     * [filterId description]
-     * @return [type] [description]
+     * Принимает переменную, при необходимости, фильтрует ее
+     * @return int id
      */
     public function filterId(){
         return filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
     }
 
     /**
-     * [filterInsertGroup description]
-     * @return [type] [description]
+     * Принимает несколько переменных, при необходимости, фильтрует их.
+     * @return array $args
      */
     public function filterInsertGroup(){
         $args = array(
@@ -25,8 +27,8 @@ class Filter{
     }
 
     /**
-     * [filterInsertStudent description]
-     * @return [type] [description]
+     * Принимает несколько переменных, при необходимости, фильтрует их.
+     * @return array $args
      */
     public function filterInsertStudent(){
         $args = array(
@@ -48,8 +50,8 @@ class Filter{
     }
 
     /**
-     * [filterGetUri description]
-     * @return [type] [description]
+     * Принимает переменную, при необходимости, фильтрует ее
+     * @return string REQUEST_URI
      */
     public function filterGetUri()
     {
@@ -57,8 +59,8 @@ class Filter{
     }
 
     /**
-     * [insertStudentToGroup description]
-     * @return [type] [description]
+     * Принимает несколько переменных, при необходимости, фильтрует их.
+     * @return array $args
      */
     public function insertStudentToGroup()
     {
@@ -70,8 +72,8 @@ class Filter{
     }
 
     /**
-     * Форма логина
-     * @return [type] [description]
+     * Принимает несколько переменных, при необходимости, фильтрует их.
+     * @return array $args
      */
     public function filterInsertLogin(){
         $args = array(
@@ -82,8 +84,8 @@ class Filter{
     }
 
     /**
-     * Добавление нового пользователя
-     * @return [type] [description]
+     * Принимает несколько переменных, при необходимости, фильтрует их.
+     * @return array $args
      */
     public function filterInsertUser(){
         $args = array(

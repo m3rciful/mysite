@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var StudentController вызывает соответствующую модель для задачи и выбирает подходящий вид. 
+ */
 class StudentController{
 
         public function __construct(){

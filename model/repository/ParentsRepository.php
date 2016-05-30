@@ -1,7 +1,5 @@
 <?php
-/**
-*
-*/
+
 class ParentsRepository{
 
     public function readParents($peson_id){

@@ -7,10 +7,6 @@
  */
 class LoginController{
 
-        /**
-         * Конструктор
-         * @access public
-         */
         public function __construct(){
         }
 

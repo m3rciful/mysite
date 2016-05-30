@@ -4,15 +4,16 @@ class Parents{
     private $person;
     private $status;
     private $address;
-/**
- * Задает состояние в зависимости от аргументов
- * @param [mixin] $args Если $flag=='READ' $args содержит id строки таблицы parent.
- *                      Если $flag=='INSERT' $args содержит значения полей из массива $_POST.
- *                      Если $flag=='UPDATE' $args содержит значения полей из массива $_POST в конце стоит поле 'id'.
- *                      Если $flag=='DELETE' $args содержит значение поля 'person_id'.
- *                      Если $flag=='null' $args содержит хэш поле->значеие для задания состояния объекта.
- * @param [String] $flag указыает, какую часть конструктора выполнить.
- */
+
+    /**
+     * Задает состояние в зависимости от аргументов
+     * @param [array] $args Если $flag=='READ' $args содержит id строки таблицы parent.
+     * Если $flag=='INSERT' $args содержит значения полей из массива $_POST.
+     * Если $flag=='UPDATE' $args содержит значения полей из массива $_POST в конце стоит поле 'id'.
+     * Если $flag=='DELETE' $args содержит значение поля 'person_id'.
+     * Если $flag=='null' $args содержит хэш поле->значеие для задания состояния объекта.
+     * @param [String] $flag указыает, какую часть конструктора выполнить.
+     */
     public function __construct($args,$flag=null){
         if($flag != null){
             $repo=new ParentsRepository();
